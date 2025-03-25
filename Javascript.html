@@ -1,129 +1,203 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <p>Rock Paper Scissors</p>
-    <button onclick="
-      playGame('rock');
-    ">Rock</button>
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+  </head>
+  <style>
+    .sb-button{
+      color: aliceblue;
+      background-color: #d02020;
+       border-radius: 100px;
+       padding-top: 10px;
+       padding-bottom: 10px;
+       padding-right: 15px;
+       padding-left: 15px;
+       cursor: pointer;
+    }
+    .nx-subscribed{
+      background-color: black;
+      color: azure;
 
-    <button onclick="
-      playGame('paper');
-    ">Paper</button>
+    }
+  </style>
+  <body>
+    <p>youtube subscribe button</p>
+     <button class="sb-button" onclick="subbutton()">subscribe</button>
 
-    <button onclick="
-      playGame('scissors');
-    ">Scissors</button>
 
-    <p class="jb-score"></p>
 
-    <button onclick="
-      score.wins = 0;
-      score.losses = 0;
-      score.ties = 0;
-      localStorage.removeItem('score');
-    PScore()">Reset Score</button>
-    <button onclick="view()">view score</button>
 
-    <script>
-      let score = JSON.parse(localStorage.getItem('score')) || {
-        wins: 0,
-        losses: 0,
-        ties: 0
-      };
+      <p>Rock Paper Scissors</p>
+      <button onclick="
+        playGame('rock');
+      ">Rock</button>
 
+      <button onclick="
+        playGame('paper');
+      ">Paper</button>
+
+      <button onclick="
+        playGame('scissors');
+      ">Scissors</button>
+
+      <p class="jb-result"></p>
+      <p class="jb-moves"></p>
+      <p class="jb-score"></p>
+
+      <button onclick="
+        score.wins = 0;
+        score.losses = 0;
+        score.ties = 0;
+        localStorage.removeItem('score');
+        PScore()">Reset Score</button>
+
+        <button onclick="PScore()"> view score</button>
+         <p>Amazon Shopping Calculator</p >
+        <input placeholder="Cost" class="jb-input"onkeydown="costkeydown(event);
+          ">
+        
+          <button onclick="calculatetotal()" >calculate </button>
+          <p class="jb-total-cost"></p>
     
 
-     
+      <script>
+        function subbutton(){
+       const sbbutton= document.querySelector('.sb-button');
+     if(sbbutton.innerHTML === 'subscribe'){
+        sbbutton.innerHTML='subscribed'
+        sbbutton.classList.add('nx-subscribed');
+     }else{
+        sbbutton.innerHTML='subscribe'
+        sbbutton.classList.remove('nx-subscribed')
+     }
+    }
 
-      function playGame(playerMove) {
-        const computerMove = pickComputerMove();
 
-        let result = '';
 
-        if (playerMove === 'scissors') {
-          if (computerMove === 'rock') {
-            result = 'You lose.';
-          } else if (computerMove === 'paper') {
-            result = 'You win.';
-          } else if (computerMove === 'scissors') {
-            result = 'Tie.';
+
+
+
+
+
+        function costkeydown(){
+          if(event.key === 'Enter'){
+          calculatetotal(event);
+        }
+
+        }
+
+
+
+        function calculatetotal(){
+          const inputelement= document.querySelector('.jb-input');
+          let cost = Number(inputelement.value);         
+          if (cost < 40){
+            cost = cost + 10;
           }
+          console.log(cost);
 
-        } else if (playerMove === 'paper') {
-          if (computerMove === 'rock') {
-            result = 'You win.';
-          } else if (computerMove === 'paper') {
-            result = 'Tie.';
-          } else if (computerMove === 'scissors') {
-            result = 'You lose.';
-          }
-          
-        } else if (playerMove === 'rock') {
-          if (computerMove === 'rock') {
-            result = 'Tie.';
-          } else if (computerMove === 'paper') {
-            result = 'You lose.';
-          } else if (computerMove === 'scissors') {
-            result = 'You win.';
-          }
-        }
-
-        if (result === 'You win.') {
-          score.wins += 1;
-        } else if (result === 'You lose.') {
-          score.losses += 1;
-        } else if (result === 'Tie.') {
-          score.ties += 1;
-        }
-
-        
-        localStorage.setItem('score', JSON.stringify(score));
+          document.querySelector(".jb-total-cost").innerHTML=`$${cost}`;
 
 
-        
-
-
-       PScore();
-        
-        alert(`You picked ${playerMove}. Computer picked ${computerMove}. ${result}
-        Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`);
-        
         }
 
 
-        function PScore(){
-        document.querySelector('.jb-score')
-         .innerHTML=`Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
-        }
 
 
-      function pickComputerMove() {
-        const randomNumber = Math.random();
 
-        let computerMove = '';
+        let score = JSON.parse(localStorage.getItem('score')) || {
+          wins: 0,
+          losses: 0,
+          ties: 0
+        };
 
-        if (randomNumber >= 0 && randomNumber < 1 / 3) {
-          computerMove = 'rock';
-        } else if (randomNumber >= 1 / 3 && randomNumber < 2 / 3) {
-          computerMove = 'paper';
-        } else if (randomNumber >= 2 / 3 && randomNumber < 1) {
-          computerMove = 'scissors';
-        }
+      
 
-        return computerMove;
-        
-      }
-      function view() {
+      
+
+        function playGame(playerMove) {
+          const computerMove = pickComputerMove();
+
+          let result = '';
+
+          if (playerMove === 'scissors') {
+            if (computerMove === 'rock') {
+              result = 'You lose.';
+            } else if (computerMove === 'paper') {
+              result = 'You win.';
+            } else if (computerMove === 'scissors') {
+              result = 'Tie.';
+            }
+
+          } else if (playerMove === 'paper') {
+            if (computerMove === 'rock') {
+              result = 'You win.';
+            } else if (computerMove === 'paper') {
+              result = 'Tie.';
+            } else if (computerMove === 'scissors') {
+              result = 'You lose.';
+            }
             
-            alert(`Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`)
-        }
-        document.title='SPS';
+          } else if (playerMove === 'rock') {
+            if (computerMove === 'rock') {
+              result = 'Tie.';
+            } else if (computerMove === 'paper') {
+              result = 'You lose.';
+            } else if (computerMove === 'scissors') {
+              result = 'You win.';
+            }
+          }
 
-    </script>
-  </body>
-</html>
+          if (result === 'You win.') {
+            score.wins += 1;
+          } else if (result === 'You lose.') {
+            score.losses += 1;
+          } else if (result === 'Tie.') {
+            score.ties += 1;
+          }
+
+          
+          localStorage.setItem('score', JSON.stringify(score));
+
+
+          
+
+
+        PScore();
+        
+        document.querySelector('.jb-result').innerHTML = result;
+        document.querySelector('.jb-moves').innerHTML = `you ${playerMove} - computer ${computerMove}`;
+          
+          
+          
+          }
+
+
+          function PScore(){
+          document.querySelector('.jb-score')
+          .innerHTML=`Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
+          }
+
+
+        function pickComputerMove() {
+          const randomNumber = Math.random();
+
+          let computerMove = '';
+
+          if (randomNumber >= 0 && randomNumber < 1 / 3) {
+            computerMove = 'rock';
+          } else if (randomNumber >= 1 / 3 && randomNumber < 2 / 3) {
+            computerMove = 'paper';
+          } else if (randomNumber >= 2 / 3 && randomNumber < 1) {
+            computerMove = 'scissors';
+          }
+
+          return computerMove;
+          
+        }
+
+      </script>
+    </body>
+  </html>
