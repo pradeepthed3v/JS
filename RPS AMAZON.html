@@ -4,24 +4,53 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Document</title>
-  </head>
-  <style>
-    .sb-button{
-      color: aliceblue;
-      background-color: #d02020;
-       border-radius: 100px;
-       padding-top: 10px;
-       padding-bottom: 10px;
-       padding-right: 15px;
-       padding-left: 15px;
-       cursor: pointer;
-    }
-    .nx-subscribed{
-      background-color: black;
-      color: azure;
 
-    }
-  </style>
+      <style>
+        .sb-button{
+          color: aliceblue;
+          background-color: #d02020;
+           border-radius: 100px;
+           padding-top: 10px;
+           padding-bottom: 10px;
+           padding-right: 15px;
+           padding-left: 15px;
+           cursor: pointer;
+           margin-bottom: 50px;
+        }
+        .nx-subscribed{
+          background-color: black;
+          color: azure;
+        }
+        body{
+          font-family: 'Times New Roman', Times, serif;
+        } 
+        .jb-input{
+          font-size: 20px;
+           padding-top: 3px;
+           padding-bottom: 6px;
+           padding-right: 15px;
+           padding-left: 15px;
+        }
+        .jb-input-button{
+          background-color: chartreuse;
+          padding-top: 10px;
+          padding-bottom: 10px;
+          text-align: center;
+          border: none;
+          cursor: pointer;
+        }
+    
+    
+    
+    
+    
+    
+      </style>
+
+
+
+  </head>
+ 
   <body>
     <p>youtube subscribe button</p>
      <button class="sb-button" onclick="subbutton()">subscribe</button>
@@ -58,7 +87,7 @@
         <input placeholder="Cost" class="jb-input"onkeydown="costkeydown(event);
           ">
         
-          <button onclick="calculatetotal()" >calculate </button>
+          <button onclick="calculatetotal()"class="jb-input-button" >calculate </button>
           <p class="jb-total-cost"></p>
     
 
